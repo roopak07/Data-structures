@@ -6,30 +6,53 @@ struct node
 	int data;
 	struct node *link;
 };
-struct node *root; // gloabl variable 'root'
+struct node *root=NULL; // gloabl variable 'root'
 int len();
-void begining();
-void append();
-void display();
+void begining(void);
+void append(void);
+void display(void);
 
 void main()
 {
-	  append();
-	  begining();
-	  int l=len();
-	  printf("lenght of the linked list:%d\n",l);
-	  display();
+	int ch,l=0;
+	while(1)
+	{
+		printf("Select one from the list\n");
+		printf("1.Append\n");
+		printf("2.begining\n");
+		printf("3.length\n");
+		printf("4.display\n");
+		printf("5.Exit\n");
+		printf("Enter your choise:");
+		scanf("%d",&ch);
+		printf("\n");
+		switch(ch)
+		{
+			case 1 : append();
+				break;
+			case 2 :begining();
+				break;
+			case 3 :l=len();
+				printf("lenght of the linked list:%d\n",l);
+				break;
+			case 4 :display();
+				break;
+			case 5 :exit(0);
+			default:printf("invalid operation \n");
+		}
+	}
 	  getch();
 }
 
 void append()
 {
 	struct node *temp,*p;
-	root=NULL;
 	temp=(struct node*)malloc(sizeof(struct node));
+	printf("root location:%u\n",root);
 	printf("new node location is:%u\n",temp);
-	printf("enter data:\n");
+	printf("enter data:");
 	scanf("%d",&temp->data);
+	printf("\n");
 	temp->link=NULL;
 	if(root==NULL)
 	{
@@ -38,11 +61,14 @@ void append()
 	else
 	{
 		p=root;
-		while(p!=NULL)
+		printf("initial p=%u\n",p);
+		while(p->link!=NULL)
 		{
 			p=p->link;
+			printf("p=%u\n",p);
 		}
 		p->link=temp;
+		printf("after p=%u\n",p);
 	}
 }
 
@@ -50,8 +76,9 @@ void begining()
 {
 	struct node *temp; // local variable temp
 	temp=(struct node*)malloc(sizeof(struct node));
-    printf("enter data for the node:\n");
+    printf("enter data:");
 	scanf("%d",&temp->data);
+	printf("\n");
 	temp->link=NULL;
 	if(root==NULL) // check weather other nodes are present or not 
 	{
@@ -81,14 +108,20 @@ int len()
 void display()
 {
 	struct node *temp; // local variable temp
-	int count=0;
-	    printf("root:%d\n",root);
-		printf("nodes data:\n");
-		temp=root;
+	printf("root address:%d\n",root);
+	temp=root;
+	if(temp==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		printf("linked list data:\n");
 		while(temp!=NULL)
 		{
-			count++;
-			printf("node %d data:%d link address:%u\n",count,temp->data,temp->link);
+			printf("%d | %u -->",temp->data,temp->link);
 			temp=temp->link;
 		}
+	}
+	printf("\n");
 }
