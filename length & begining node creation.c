@@ -17,7 +17,7 @@ void main()
 	int ch,l=0;
 	while(1)
 	{
-		printf("Select one from the list\n");
+		printf("_____Select one from the list_____\n");
 		printf("1.Append\n");
 		printf("2.begining\n");
 		printf("3.length\n");
@@ -61,14 +61,12 @@ void append()
 	else
 	{
 		p=root;
-		printf("initial p=%u\n",p);
 		while(p->link!=NULL)
 		{
 			p=p->link;
-			printf("p=%u\n",p);
+			printf("p:%u\n",p);
 		}
 		p->link=temp;
-		printf("after p=%u\n",p);
 	}
 }
 
@@ -119,7 +117,7 @@ void display()
 		printf("linked list data:\n");
 		while(temp!=NULL)
 		{
-			printf("%d | %u -->",temp->data,temp->link);
+			printf("%d|%u --> ",temp->data,temp->link);
 			temp=temp->link;
 		}
 	}
