@@ -22,7 +22,7 @@ void main()
 	else
 	{
 		p=root;
-		while(p!=NULL)
+		while(p->link!=NULL)
 		{
 			p=p->link;
 		}
