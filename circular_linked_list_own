@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void new();
+void display();
+struct node
+{
+	int data;
+	struct node *link;
+};
+struct node *root = NULL;
+void main()
+{
+ int ch;
+ while(1)
+ {
+	 printf(" \n ******Select one from below ******* \n");
+	 printf("1.new node \n");
+	 printf("2.display \n");
+	 printf("7.Exit \n");
+	 printf("Enter your choise: \n");
+	 scanf("%d",&ch);
+	 switch(ch)
+	 {
+		case 1: new();
+				break;
+		case 2: display();
+				break;		
+		case 7: exit(0);
+				break;
+		default:  printf("Enter a valid option");
+	 }
+ }
+ getch();
+}
+// new node
+void new()
+{
+	struct node *temp;
+	struct node *pos;
+	temp=(struct node*)malloc(sizeof(struct node));
+	printf("new node location : %u \n",temp);
+	if(root == NULL)
+	{
+		root = temp;
+		pos = root;
+	}
+	else
+	{
+		pos = root;
+		while(pos->link != root)
+		{
+			pos = pos->link;
+		}
+		pos->link = temp;
+		printf("link position:%u \n",pos->link);
+		
+	}
+	printf("enter a value: \n");
+	scanf("%d",&temp->data);
+	temp->link = root;
+	printf("%u --->>> %d | %u \n",pos,temp->data,temp->link);	
+}
+
+void display()
+{
+	struct node *temp; // local variable temp
+	printf("linked list data:\n");
+	printf("root address:%d\n",root);
+	printf("%d --->",root);
+	temp=root;
+	if(temp==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		while(temp->link!=root)
+		{
+			printf("%d|%u --> ",temp->data,temp->link);
+			temp=temp->link;
+		}
+		printf("%d|%u --> ",temp->data,temp->link);
+	}
+	printf("\n");
+}
+
