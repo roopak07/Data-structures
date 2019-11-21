@@ -7,6 +7,7 @@ void addf();
 void beg();
 void delet();
 void swap();
+void reverse();
 struct node
 {
 	int data;
@@ -26,7 +27,8 @@ void main()
 		printf("5.add at the begining \n");
 		printf("6.delet \n");
 		printf("7.Swapping \n");
-		printf("8.exit \n");
+		printf("8.reverse \n");
+		printf("9.exit \n");
 		printf("Enter your choise: ");
 		scanf("%d",&ch);
 		printf("\n");
@@ -47,7 +49,9 @@ void main()
 					break;
 			case 7: swap();
 					break;
-			case 8: exit(1);
+			case 8: reverse();
+					break;
+			case 9: exit(1);
 					break;
 			default: printf("Enter a valid choise \n");
 			
@@ -206,4 +210,19 @@ void swap()
 		posn->link=posp;
 		pos->link=posn;
 	}
+}
+
+void reverse()
+{
+	struct node *prev,*current,*next;
+	current=root;
+	prev = NULL;
+	while(current!=NULL)
+	{
+		next = current -> link;
+		current -> link = prev;
+		prev = current;
+		current = next;
+	}
+	root = prev;
 }
